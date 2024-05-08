@@ -1,5 +1,5 @@
 import time
-from Code.Metrics.CostTracker import CostTracker
+from Tsunami.Metrics.CostTracker import CostTracker
 
 class ProjectConfig():
     def __init__(self, workspace=None, cost_tracker=None, continue_analysis=False, **kwargs):

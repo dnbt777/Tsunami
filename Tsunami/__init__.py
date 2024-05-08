@@ -9,7 +9,7 @@ def start_project(project_config_json_path):
 
     downloader = Downloader(
         project.get_project_config(),
-        project.get_data_requests()
+        project.get_data_request_jobs()
     )
 
     analyzer = Analyzer(

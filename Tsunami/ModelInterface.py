@@ -3,7 +3,7 @@ import os
 import json
 import logging
 from .logger import log
-from Code.Metrics.CostTracker import CostTracker
+from Tsunami.Metrics.CostTracker import CostTracker
 
 import boto3
 from botocore.exceptions import ClientError
@@ -15,7 +15,8 @@ class ModelInterface():
         else:
             # Make a client
             self.client = boto3.client(
-                service_name="bedrock-runtime", region_name="us-west-2",
+                service_name="bedrock-runtime",
+                region_name=os.environ.get("AWS_REGION"),
                 aws_access_key_id=os.environ.get("ACCESS_KEY"),
                 aws_secret_access_key=os.environ.get("SECRET_KEY"),
                 aws_session_token=os.environ.get("SESSION_TOKEN"),
@@ -109,9 +110,6 @@ class ModelInterface():
             "sonnet"    : "anthropic.claude-3-sonnet-20240229-v1:0",
             "opus"      : "anthropic.claude-3-opus-20240229-v1:0",
         }[model]
-        costs = {
-            # TODO make this
-        }
 
         try:
             response_stream = client.invoke_model_with_response_stream(
@@ -177,22 +175,19 @@ class ModelInterface():
     
 
 
-    def send_to_ai(self, prompt, model, max_tokens=1000, log_results=True, stream=True):
+    def send_to_ai(self, prompt, model, max_tokens=1000, stream=True):
         log(f"Sending to {model}")
-        log("SENDING PROMPT. LENGTH = ", len(prompt))
+        log("SENDING PROMPT, LENGTH =", len(prompt))
+        log("Estimated tokens:", len(prompt)//5)
         
         if stream == False:
             result_text, metrics = self.model_interface.invoke_claude_3_with_text(prompt, model=model, max_tokens=max_tokens)
         else:
             result_text, metrics = self.model_interface.invoke_claude_3_with_stream(prompt, model=model, max_tokens=max_tokens)
-        if log_results:
-            log("#"*50)
-            log(result_text)
-            log("#"*50)
         
         # Update cost data
         self.cost_tracker.add_request_metrics_to_cost_data(metrics)
-        print(self.cost_tracker.show_cost_data())
-        #self.add_request_metrics_to_cost_data(metrics)
+        self.cost_tracker.show_cost_data()
+        print('\n\n\n')
 
         return result_text, metrics

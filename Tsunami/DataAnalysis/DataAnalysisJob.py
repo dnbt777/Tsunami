@@ -1,30 +1,3 @@
-example_dataanalysisjobs_json = { 
-        "model_analysis_params" : {
-            # Model to analyze each doc -> DocAnalysis
-            "doc_analysis_model"            : "haiku",
-            # "doc_chunk_size"                : 10_000,  # breaks up large documents into several chunks
-
-            # Model to recursively stitch together DocAnalysis objects -> [DocAnalysis, DocAnalysis ...] -> DocAnalysis
-            # Do this until there are less than {max_compilations_per_final_report} DocAnalysis objects left
-            "recursive_compilation_model"   : "sonnet",
-            "max_docs_per_compilation"      : 3, # only stitches max of 3 together at once
-
-            # Model to generate final report out of DocAnalysis objects
-            "final_report_model"            : "sonnet",
-            "max_compilations_per_final_report" : 10, # => f(10 doc analyses) -> final report
-        },
-        "prompts" : {
-            "doc_analysis_prompt" : "Analyze this doc, searching for xyz criteria.", # primary user input
-            "doc_report_compilation_prompt" : "Combine these two reports", # recommended to not make this user input
-            "final_report_prompt" : "Combine these reports into a final analysis with xyz criteria." # recommended to not make this user input
-        },
-        "excluded_directories" : [
-            "/spotify", # example
-        ]  #directories in /downloads/* to exclude from analysis
-    }
-
-
-
 # A request for data to be analyzed
 # Essentially just a dictionary at the moment
 class DataAnalysisJob():

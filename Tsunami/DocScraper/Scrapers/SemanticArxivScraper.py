@@ -2,10 +2,10 @@ import requests
 import os
 from tqdm import tqdm
 import time
-from Code.logger import log
-from Code.Utils.basicutils import *
-from Code.DocScraper.DataRequest import DataRequestJob
-from Code.TextProcessor import TextProcessor
+from Tsunami.logger import log
+from Tsunami.Utils.basicutils import *
+from Tsunami.DocScraper.DataRequest import DataRequestJob
+from Tsunami.TextProcessor import TextProcessor
 
 
 class SemanticArxivScraper():

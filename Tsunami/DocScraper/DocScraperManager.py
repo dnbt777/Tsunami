@@ -1,14 +1,12 @@
-
-#
-from Code.DocScraper.Scrapers.GPSScraper import GPSScraper
-from Code.DocScraper.Scrapers.YTScraper import YTScraper
-from Code.DocScraper.Scrapers.SemanticArxivScraper import SemanticArxivScraper
-from Code.DocScraper.Scrapers.DepthCrawlerScraper import DepthCrawlerScraper
-from Code.DocScraper.Scrapers.GitHubScraper import GitHubScraper
+from Tsunami.DocScraper.Scrapers.GPSScraper import GPSScraper
+from Tsunami.DocScraper.Scrapers.YTScraper import YTScraper
+from Tsunami.DocScraper.Scrapers.SemanticArxivScraper import SemanticArxivScraper
+from Tsunami.DocScraper.Scrapers.DepthCrawlerScraper import DepthCrawlerScraper
+from Tsunami.DocScraper.Scrapers.GitHubScraper import GitHubScraper
 
 
-from Code.DocScraper.DataRequest import DataRequestJobs, DataRequestJob
-from Code.ProjectConfig import ProjectConfig
+from Tsunami.DocScraper.DataRequest import DataRequestJobs, DataRequestJob
+from Tsunami.ProjectConfig import ProjectConfig
 import os
 
 

@@ -1,5 +1,4 @@
-
-
+# Tracks costs across model requests
 
 class CostTracker():
     def __init__(self):
@@ -11,16 +10,16 @@ class CostTracker():
         total_of_totals = 0
 
         # Print header for clarity
-        print(f"{'Index':<5} {'Input Cost':<15} {'Output Cost':<15} {'Total Cost':<15}")
+        print(f"{'Index':<15} {'Input Cost':<15} {'Output Cost':<15} {'Total Cost':<15}")
         
         # Iterate through each cost item and print details
         for index, cost in enumerate(self.cost_data):
-            print(f"{index:<5} {cost['input_cost']:<15} {cost['output_cost']:<15} {cost['total_cost']:<15}")
+            print(f"{index:<15.4f} ${cost['input_cost']:<15.4f} ${cost['output_cost']:<15.4f} ${cost['total_cost']:<15.4f}")
             # Accumulate the total of total costs
             total_of_totals += cost['total_cost']
 
         # Print the total of all total costs
-        print(f"\nTotal of all total costs: {total_of_totals}")
+        print(f"\nCumulative cost: ${total_of_totals:<10.4f}")
 
 
 

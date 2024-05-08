@@ -1,8 +1,8 @@
 import json
-from Code.ProjectConfig import ProjectConfig
-from Code.Metrics.CostTracker import CostTracker
-from Code.DataAnalysis.DataAnalysisJob import DataAnalysisJob
-from Code.DocScraper.DataRequest import DataRequestJobs
+from Tsunami.ProjectConfig import ProjectConfig
+from Tsunami.Metrics.CostTracker import CostTracker
+from Tsunami.DataAnalysis.DataAnalysisJob import DataAnalysisJob
+from Tsunami.DocScraper.DataRequest import DataRequestJobs
 
 class ProjectLoader:
     def __init__(self, config_file):
@@ -23,7 +23,7 @@ class ProjectLoader:
             continue_analysis=config_data['continue_analysis']
         )
 
-    def get_data_requests(self):
+    def get_data_request_jobs(self):
         return DataRequestJobs(self.data['data_requests'])
 
     def get_analysis_requests(self):

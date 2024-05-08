@@ -2,9 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, quote
 import re
-from Code.logger import log
-from Code.Utils.basicutils import save_chars_as_file
-from Code.DocScraper.DataRequest import DataRequestJob
+from Tsunami.logger import log
+from Tsunami.Utils.basicutils import save_chars_as_file
+from Tsunami.DocScraper.DataRequest import DataRequestJob
 import time
 import os
 from urllib.parse import urljoin  # Import urljoin to handle URL joining

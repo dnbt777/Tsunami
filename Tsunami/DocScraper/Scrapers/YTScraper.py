@@ -3,14 +3,14 @@ import os
 import re
 from tqdm import tqdm
 import time
-from Code.logger import log
-from Code.Utils.basicutils import *
-from Code.DocScraper.DataRequest import DataRequestJob
+from Tsunami.logger import log
+from Tsunami.Utils.basicutils import *
+from Tsunami.DocScraper.DataRequest import DataRequestJob
 
 from youtube_transcript_api import YouTubeTranscriptApi
 from pytube import Playlist
 from urllib.parse import urlparse, parse_qs
-from Code.logger import log
+from Tsunami.logger import log
 
 
 
@@ -48,6 +48,7 @@ class YTScraper():
                     if datarequestjob.document_analysis_limit_per_playlist:
                         video_urls = video_urls[:datarequestjob.document_analysis_limit_per_playlist]
                     # then get the caption for each video
+                    log(f"Downloading transcripts for {len(video_urls)} videos")
                     for video_url in video_urls:
                         YTScraper.download_video_transcript(video_url, data_download_directory)
                 elif youtube_url_type == "channel":

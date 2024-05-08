@@ -1,4 +1,5 @@
-# Basic utilities used everywhere
+### Basic utilities used everywhere ###
+
 import os
 from bs4 import BeautifulSoup
 

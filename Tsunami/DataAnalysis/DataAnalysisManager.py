@@ -3,7 +3,6 @@ from Tsunami.ProjectConfig import ProjectConfig
 from Tsunami.ModelInterface import ModelInterface
 from Tsunami.Utils.basicutils import *
 from Tsunami.logger import log
-from tqdm import tqdm
 import os
 import re
 
@@ -23,9 +22,8 @@ class DataAnalysisManager:
             responses = self.read_responses_from_directory(highest_level_dir)
         else:
             file_paths = self.get_file_paths_to_analyze(data_analysis_job.excluded_directories)
-            log(f"Analyzing {len(file_paths)} files...")
             responses = []
-            for i, file_path in enumerate(tqdm(file_paths)):
+            for i, file_path in enumerate(file_paths):
                 log(f"Analyzing file {i+1}/{len(file_paths)}")
                 log(f"File path: '{file_path}'")
                 content = get_chars_from_file(file_path)
@@ -33,6 +31,9 @@ class DataAnalysisManager:
                     data_analysis_job.doc_analysis_prompt + "\n\n" + content,
                     model=data_analysis_job.doc_analysis_model
                 )
+                 # Save the response to the level_0 directory
+                save_chars_as_file(response_text, f"{self.project_config.data_analysis_directory}/level_{0}/{i}.txt")
+                # Append it to the list of responses
                 responses.append(response_text)
 
         # Handle compilation of responses
@@ -64,10 +65,9 @@ class DataAnalysisManager:
 
 
     def handle_compilations(self, responses, data_analysis_job : DataAnalysisJob):
-        level = 0
+        level = 1
         while len(responses) > data_analysis_job.max_compilations_per_final_report:
-            grouped_responses = [responses[i:i + data_analysis_job.max_docs_per_compilation]
-                                 for i in range(0, len(responses), data_analysis_job.max_docs_per_compilation)]
+            grouped_responses = [responses[i:i + data_analysis_job.max_docs_per_compilation] for i in range(0, len(responses), data_analysis_job.max_docs_per_compilation)]
             compiled_responses = []
             for group in grouped_responses:
                 compiled_response, metrics = self.model_interface.send_to_ai(

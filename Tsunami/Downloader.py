@@ -1,9 +1,11 @@
+from Tsunami.DocScraper.DataRequest import DataRequestJobs
+from Tsunami.DocScraper.DocScraperManager import DocScraperManager
+
 class Downloader:
-    def __init__(self, project_config, datarequestjobs_list_json):
+    def __init__(self, project_config, datarequestjobs):
         self.project_config = project_config
-        self.datarequestjobs_list_json = datarequestjobs_list_json
+        self.datarequestjobs = datarequestjobs
 
     def execute(self):
-        datarequestjobs = DataRequestJobs(self.datarequestjobs_list_json)
         docscraper = DocScraperManager(self.project_config)
-        docscraper.execute_jobs(datarequestjobs)
+        docscraper.execute_jobs(self.datarequestjobs)
