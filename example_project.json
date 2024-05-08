@@ -22,7 +22,7 @@
       "doc_analysis_model": "haiku",
       "recursive_compilation_model": "haiku",
       "max_docs_per_compilation": 4,
-      "final_report_model": "sonnet",
+      "final_report_model": "haiku",
       "max_compilations_per_final_report": 10
     },
     
