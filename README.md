@@ -1,5 +1,7 @@
 # Tsunami - analyze large amouts of data with AI
 
+![image](https://github.com/dnbt777/Tsunami/assets/169108635/f9f33d21-4119-4728-bc88-068c63168961)
+
 
 ### Terms/Conditions
 By using this program you take responsibility for all costs incurred through any/all API usage.
