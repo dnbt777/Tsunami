@@ -19,7 +19,7 @@ Cost data is output after each response completion, including cumulative cost.
 ⚠️⚠️⚠️ AUTOMATED ANALYSIS OF LARGE AMOUNTS OF DATA CAN BE EXTREMELY EXPENSIVE IF DONE WRONG. ⚠️⚠️⚠️
 
 ### Terms/Conditions
-By using this program you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms.
+A condition for using this program is that you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms.
 
 
 ## Quick start
