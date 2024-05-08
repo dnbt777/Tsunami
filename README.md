@@ -1,7 +1,7 @@
 # Tsunami - analyze large amouts of data with AI
-
-![93767a1e-594b-4a8a-866d-fa8eb4a364f3 (1) (1)](https://github.com/dnbt777/Tsunami/assets/169108635/d02d3a73-62a4-4cc5-9b0f-4892aa74074c)
-
+<p align="center">
+   <img src="https://github.com/dnbt777/Tsunami/assets/169108635/d02d3a73-62a4-4cc5-9b0f-4892aa74074c?raw=true"/>
+</p>
 
 
 ### Terms/Conditions
