@@ -16,7 +16,9 @@ Cost data is output after each response completion, including cumulative cost.
 
 
 ## ⚠️⚠️WARNING⚠️⚠️
-⚠️⚠️⚠️ AUTOMATED ANALYSIS OF LARGE AMOUNTS OF DATA CAN BE EXTREMELY EXPENSIVE IF DONE WRONG. ⚠️⚠️⚠️
+⚠️⚠️⚠️ AUTOMATED ANALYSIS OF LARGE AMOUNTS OF DATA CAN BE EXTREMELY EXPENSIVE IF YOU'RE NOT CAUTIOUS ⚠️⚠️⚠️
+
+Make sure you know what you are doing and use cheaper models, such as Haiku, until you are familiar with the program.
 
 ### Terms/Conditions
 A condition for using this program is that you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms.
