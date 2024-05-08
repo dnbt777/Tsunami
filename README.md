@@ -1,4 +1,4 @@
-# Tsunami | Scrape & analyze large amounts of data with LLMs
+# Tsunami | Simple Scraping / LLM Analysis
 <p align="center">
    <img height="500px" width="500px" src="https://github.com/dnbt777/Tsunami/assets/169108635/d02d3a73-62a4-4cc5-9b0f-4892aa74074c?raw=true"/>
 </p>
@@ -57,6 +57,9 @@ Todo
 ## Documentation/Examples
 Coming soon
 
+
+## Support
+Submit an issue, DM me on twitter (https://twitter.com/dnbt777), or DM me on github
 
 
 #### TODO
