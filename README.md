@@ -15,8 +15,12 @@ A workspace is created in ./workspace/{project_name} containing all doc/data dow
 Cost data is output after each response completion, including cumulative cost.
 
 
+## ⚠️⚠️WARNING⚠️⚠️
+⚠️⚠️⚠️ AUTOMATED ANALYSIS OF LARGE AMOUNTS OF DATA CAN BE EXTREMELY EXPENSIVE IF DONE WRONG. ⚠️⚠️⚠️
+
 ### Terms/Conditions
-By using this program you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms. Automated analysis of large amounts of data can be extremely expensive.
+By using this program you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms.
+
 
 ## Quick start
 1. git clone https://github.com/dnbt777/Tsunami
