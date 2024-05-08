@@ -53,20 +53,15 @@ AWS_USERNAME=
 
 
 
-## Usage
-Todo
-
-
-
-## Documentation/Examples
-Coming soon
+## Usage - Documentation/Examples
+[See guides in the DOCS-EXAMPLES folder](https://github.com/dnbt777/Tsunami/tree/master/DOCS-EXAMPLES)
 
 
 ## Support
 Submit an issue, DM me on twitter (https://twitter.com/dnbt777), or DM me on github
 
 
-#### TODO
+## TODO
 Documentation
 RAG
 Add more models
