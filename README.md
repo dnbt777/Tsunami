@@ -16,7 +16,7 @@ Cost data is output after each response completion, including cumulative cost.
 
 
 ### Terms/Conditions
-By using this program you take responsibility for all costs incurred through any/all API usage.
+By using this program you take responsibility for all costs incurred through any/all API usage. Do not use the program if you don't accept these terms. Automated analysis of large amounts of data can be extremely expensive.
 
 ## Quick start
 1. git clone https://github.com/dnbt777/Tsunami
