@@ -1,0 +1,32 @@
+{
+  "project_config": {
+    "workspace": "example_project",
+    "cost_tracker": true,
+    "ratelimit_delay_seconds": 2,
+    "continue_analysis": false
+  },
+  "data_requests": [
+    {
+      "name" : "Huberman podcast full playlist (just for organization, 'name' doesnt do anything, can delete if u want)",
+	  "source": "youtube",
+      "links": [
+        "https://www.youtube.com/playlist?list=PLPNW_gerXa4Pc8S2qoUQc5e8Ir97RLuVW"
+      ],
+      "document_analysis_limit_per_playlist": 10
+    }
+  ],
+  "analysis_requests": {
+    "model_analysis_params": {
+      "doc_analysis_model": "haiku",
+      "recursive_compilation_model": "haiku",
+      "max_docs_per_compilation": 4,
+      "final_report_model": "sonnet",
+      "max_compilations_per_final_report": 10
+    },
+    "prompts": {
+      "doc_analysis_prompt": "<instructions>Below is a podcast transcript from Andrew Huberman's podcast. Write down relevant quotes from the transcript related to advice on water intake throughout the day.</instructions>",
+      "doc_report_compilation_prompt": "<instructions>Merge these analyses docs together, keeping as many detailed points of information as possible.</instructions>",
+      "final_report_prompt": "<instructions>Merge these analyses docs together, keeping as many detailed points of information as possible.</instructions>"
+    }
+  }
+}

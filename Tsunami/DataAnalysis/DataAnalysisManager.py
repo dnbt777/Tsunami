@@ -1,8 +1,8 @@
-from Code.DataAnalysis.DataAnalysisJob import DataAnalysisJob
-from Code.ProjectConfig import ProjectConfig
-from Code.ModelInterface import ModelInterface
-from Code.Utils.basicutils import *
-from Code.logger import log
+from Tsunami.DataAnalysis.DataAnalysisJob import DataAnalysisJob
+from Tsunami.ProjectConfig import ProjectConfig
+from Tsunami.ModelInterface import ModelInterface
+from Tsunami.Utils.basicutils import *
+from Tsunami.logger import log
 from tqdm import tqdm
 import os
 import re
