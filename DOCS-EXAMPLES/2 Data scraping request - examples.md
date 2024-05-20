@@ -67,10 +67,10 @@ This document provides examples of different types of data requests that can be 
 {
     "source": "webcrawler",
     "links": [
-        "https://www.citadelsecurities.com/careers/open-opportunities/positions-for-professionals/"
+        "https://www.example.com/careers/open-opportunities/positions-for-professionals/"
     ],
     "depth": 2,
-    "filter_for_retention": "lambda url: 'https://www.citadelsecurities.com/careers/' in url",
+    "filter_for_retention": "lambda url: 'https://www.example.com/careers/' in url",
     "filter_for_avoiding_visiting_site": "lambda url: not ('careers' in url)"
 }
 ```

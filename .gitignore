@@ -1,4 +1,6 @@
 
+projects/*
+
 # Application stuff
 temp/*
 .env
