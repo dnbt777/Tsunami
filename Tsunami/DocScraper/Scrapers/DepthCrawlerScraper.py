@@ -1,14 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, quote
+from urllib.parse import urlparse, quote, urljoin
 import re
 from Tsunami.logger import log
 from Tsunami.Utils.basicutils import save_chars_as_file
 from Tsunami.DocScraper.DataRequest import DataRequestJob
+from Tsunami.TextProcessor import TextProcessor
 import time
 import os
-from urllib.parse import urljoin  # Import urljoin to handle URL joining
-
 
 default_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
@@ -35,8 +34,9 @@ class DepthCrawlerScraper:
             page_content = DepthCrawlerScraper.download_page_content(scraped_url)
             if page_content:
                 sanitized_url = quote(scraped_url, safe='')  # Sanitize URL to be used as a filename
+                cleaned_page_content = TextProcessor.extract_text_from_html_string(page_content)
                 file_path = os.path.join(data_download_directory, f"{sanitized_url}.txt")
-                save_chars_as_file(page_content, file_path)
+                save_chars_as_file(cleaned_page_content, file_path)
                 log(f"Saved scraped page content to {file_path}", log_type="INFO")
 
     @staticmethod
@@ -47,27 +47,28 @@ class DepthCrawlerScraper:
 
         for current_depth in range(depth):
             urls_to_scrape_next_depth = []
-            log(f"Scraping depth {current_depth+1}/{depth}", log_type="INFO")
+            log(f"Scraping depth {current_depth + 1}/{depth}", log_type="INFO")
 
             for current_url in urls_to_scrape:
-                if filter_for_avoiding_visiting_site and filter_for_avoiding_visiting_site(current_url):
+                if filter_for_avoiding_visiting_site and re.search(filter_for_avoiding_visiting_site, current_url):
                     log(f"Skipping URL due to filter: {current_url}", log_type="LOG")
                     continue
 
                 page_content = DepthCrawlerScraper.download_page_content(current_url)
-                scraped_urls = DepthCrawlerScraper.get_urls_from_html(page_content)
+                if page_content:
+                    scraped_urls = DepthCrawlerScraper.get_urls_from_html(page_content, current_url)
+                    time.sleep(scraping_delay)
+                    log(f"Found {len(scraped_urls)} URLs from {current_url}", log_type="LOG")
 
-                time.sleep(scraping_delay)
-                log(f"Scraped {len(scraped_urls)} URLs from {current_url}", log_type="LOG")
-
-                for new_url in scraped_urls:
-                    if new_url not in urls and new_url not in urls_to_scrape_next_depth:
-                        urls_to_scrape_next_depth.append(new_url)
+                    for new_url in scraped_urls:
+                        if new_url not in urls and new_url not in urls_to_scrape_next_depth:
+                            if re.search(filter_for_retention, new_url):
+                                urls_to_scrape_next_depth.append(new_url)
 
             urls.extend(urls_to_scrape)
             urls_to_scrape = urls_to_scrape_next_depth
 
-        retained_urls = [url for url in urls if filter_for_retention(url)]
+        retained_urls = [url for url in urls if re.search(filter_for_retention, url)]
         log(f"Retained {len(retained_urls)} URLs after filtering", log_type="INFO")
         return retained_urls
 
@@ -82,10 +83,10 @@ class DepthCrawlerScraper:
             return None
 
     @staticmethod
-    def get_urls_from_html(page_content):
+    def get_urls_from_html(page_content, base_url):
         try:
             soup = BeautifulSoup(page_content, 'html.parser')
-            links = [link.get('href') for link in soup.find_all('a')]
+            links = [urljoin(base_url, link.get('href')) for link in soup.find_all('a', href=True)]
             log(f"Downloaded and parsed {len(links)} links from page content", log_type="LOG")
             log(links)
             return links

@@ -38,6 +38,7 @@ class DocScraperManager():
             "youtube"   : YTScraper,
             "arxiv"     : SemanticArxivScraper,
             "spotify"   : None,
+            "webscraper": DepthCrawlerScraper,
             "webcrawler": DepthCrawlerScraper,
             "github" : GitHubScraper,
         }[datarequestjob.source]
