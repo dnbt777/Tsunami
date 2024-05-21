@@ -1,6 +1,7 @@
 from Tsunami.ProjectLoader import ProjectLoader
 from Tsunami.Downloader import Downloader
 from Tsunami.Analyzer import Analyzer
+from Tsunami.RagGenerator import RAGGenerator
 
 
 def start_project(project_config_json_path):
@@ -17,4 +18,9 @@ def start_project(project_config_json_path):
         project.get_analysis_requests()
     )
 
-    return project, downloader, analyzer
+    rag_generator = RAGGenerator(
+        project.get_project_config(),
+        project.get_rag_creation_job()
+    )
+
+    return project, downloader, analyzer, rag_generator

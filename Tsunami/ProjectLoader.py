@@ -3,6 +3,7 @@ from Tsunami.ProjectConfig import ProjectConfig
 from Tsunami.Metrics.CostTracker import CostTracker
 from Tsunami.DataAnalysis.DataAnalysisJob import DataAnalysisJob
 from Tsunami.DocScraper.DataRequest import DataRequestJobs
+from Tsunami.DataAnalysis.RAGCreationJob import RAGCreationJob
 
 class ProjectLoader:
     def __init__(self, config_file):
@@ -28,3 +29,6 @@ class ProjectLoader:
 
     def get_analysis_requests(self):
         return DataAnalysisJob(self.data['analysis_requests'])
+
+    def get_rag_creation_job(self):
+        return RAGCreationJob(self.data['rag_creation_job'])

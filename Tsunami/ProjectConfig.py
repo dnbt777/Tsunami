@@ -8,6 +8,7 @@ class ProjectConfig():
         self.workspace_directory = f"workspaces/{workspace}"
         self.data_download_directory = f"{self.workspace_directory}/data_downloads"
         self.data_analysis_directory = f"{self.workspace_directory}/data_anaysis"
+        self.rag_directory = f"{self.workspace_directory}/rag_analysis"
         self.continue_analysis = continue_analysis # Continues an analysis from the deepest level found - use for broken analyses
         
         if not cost_tracker:

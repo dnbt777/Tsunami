@@ -13,14 +13,18 @@ parser = argparse.ArgumentParser(description="Process some integers.")
 parser.add_argument('project_file', type=str, help='Path to the project JSON file')
 parser.add_argument('-download', action='store_true', help='Enable downloading of data')
 parser.add_argument('-analyze', action='store_true', help='Enable analysis of data')
+parser.add_argument('-createrag', action='store_true', help='Generate a RAG db')
+parser.add_argument('-analyzerag', action='store_true', help='Analyzing using RAG')
 args = parser.parse_args()
 
 PROJECT_FILE = args.project_file
 DOWNLOAD = args.download
 ANALYZE = args.analyze
+RAG = args.createrag
+ANALYZE_RAG = args.analyzerag
 
-if not (DOWNLOAD or ANALYZE):
-    print("Usage: py ./main.py <any/folders/project_name.json> [-download] [-analyze]")
+if not (DOWNLOAD or ANALYZE or RAG or ANALYZE_RAG):
+    print("Usage: py ./main.py <any/folders/project_name.json> [-download] [-analyze] [-createrag] [-analyzerag]")
     quit()
 
 ### Import AWS boto3 ###
@@ -50,7 +54,7 @@ import boto3 # is this needed rn?
 from Tsunami import start_project
 
 # Load configurations
-project, downloader, analyzer = start_project(PROJECT_FILE)
+project, downloader, analyzer, rag_generator = start_project(PROJECT_FILE)
 
 
 # Execute download of files if enabled
@@ -63,3 +67,8 @@ if DOWNLOAD:
 # Stores analyses in ./workspace/[your workspace]/data_analysis/
 if ANALYZE:
     analyzer.execute()
+
+# Generate RAG
+# Not yet usable for analysis...
+if RAG:
+    rag_generator.execute()
