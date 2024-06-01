@@ -10,14 +10,14 @@ def clean_string_for_file_system(string, max_length = 254):
 
 
 
-def save_chars_as_file(chars, path_to_file):
+def save_chars_as_file(chars, path_to_file, extension=".md"):
     # Check if the directory exists, if not create it
     chars = str(chars)
     directory = os.path.dirname(path_to_file)
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    with open(path_to_file, 'w', encoding='utf-8', errors='ignore') as file:
+    with open(path_to_file + extension, 'w', encoding='utf-8', errors='ignore') as file:
             file.write(chars)
 
 
