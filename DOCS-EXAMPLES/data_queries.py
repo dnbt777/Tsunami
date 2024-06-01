@@ -1,13 +1,3 @@
-
-pps_pubmed = {
-    "query_lists" : [[
-        "cancer in men",
-        "cancer in women",
-        "etc"
-    ]],
-    "document_analysis_limit_per_query" : 10,
-}
-
 # Downloads from pubmedisearch.com - semantic search
 gps = {
     "queries" : [
@@ -20,7 +10,7 @@ gps = {
 
 # Downloads youtube links (TODO add searches/queries)
 youtube = {
-    "queries" : [ # TODO
+    "queries" : [ # TODO queries dont work yet
         "cancer treatment 101 tutorial",
         "etc",
     ],
@@ -31,38 +21,16 @@ youtube = {
     ],
 }
 
-# Downloads spotify transcripts - uses semantic search for queries
-spotify = {
-    "queries" : [
-        "cancer treatment expert",
-        "cancer expert podcast",
-        "etc",
-    ],
-    "links" : [
-        "add links to podcasts here"
-    ],
-    "document_analysis_limit_per_query" : 10,
-}
-
-# Googles top x pages and gets them, per query
-google = {
-    "queries" : [
-        "cancer blog -astrology -recipes",
-        "cancer expert posts site:cancerexperts.com",
-        "etc",
-        ],
-    "document_analysis_limit_per_query" : 10,
-}
-
 # Gets webpages/links from anywhere
-webpages = {
-    "links" : [
-        "https://reddit.com/r/cancer/123908123",
-        "https://pubmed.org/102392812089",
-        "etc"
-    ],
-    "special_links" : [
-        "https://blog.cancer.com/page/{n}", # write some sort of parsing function
-    ],
-    "document_analysis_limit_per_query" : 10, # applies to special links - picks first 10
+{
+  "name" : "Karpathy blog",
+  "source": "webscraper",
+  "links": [
+    "http://karpathy.github.io/"
+  ],
+  "depth" : 2,
+  "filter_for_retention": "karpathy\\.github\\.io/\\d+/\\d+/.*",
+  "filter_for_avoiding_visiting_site": "^(?!.*karpathy\\.github\\.io).*"
 }
+
+# also works for github repos, github queries, and semantic arxiv search

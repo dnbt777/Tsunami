@@ -1,0 +1,53 @@
+{
+  "project_config": {
+    "workspace": "karpathy_analysis",
+    "cost_tracker": true,
+    "ratelimit_delay_seconds": 2,
+    "continue_analysis": false
+  },
+
+  "data_requests": [
+    {
+      "name" : "karpathy youtube - contains playlists and whatnot w karpathy",
+      "source": "youtube",
+      "links": [
+        "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ",
+        "https://www.youtube.com/playlist?list=PLRQmQC3wIq9zLrf9KeuSqAfwF47rsnioM",
+        "https://www.youtube.com/watch?v=cdiD-9MMpb0&list=PLCTIBLe-jKJZ9_5L6rwAzW9U71EZ1bqiP",
+        "https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC"
+      ],
+      "document_analysis_limit_per_playlist": 1000
+    },
+    {
+      "name" : "Karpathy blog",
+      "source": "webscraper",
+      "links": [
+        "http://karpathy.github.io/"
+      ],
+      "depth" : 2,
+      "filter_for_retention": "karpathy\\.github\\.io/\\d+/\\d+/.*",
+      "filter_for_avoiding_visiting_site": "^(?!.*karpathy\\.github\\.io).*"
+    }
+],
+
+  "analysis_requests": {
+    "model_analysis_params": {
+      "doc_analysis_model": "haiku",
+      "recursive_compilation_model": "haiku",
+      "max_docs_per_compilation": 4,
+      "final_report_model": "haiku",
+      "max_compilations_per_final_report": 10
+    },
+    
+    "prompts": {
+      "doc_analysis_prompt": "<instructions>Give direct quotes from the document related to advice about learning ML faster.</instructions>",
+      "doc_report_compilation_prompt": "<instructions>Merge these analyses docs together, keeping as many detailed points of information as possible.</instructions>",
+      "final_report_prompt": "<instructions>Merge these analyses docs together, keeping as many detailed points of information as possible.</instructions>"
+    }
+  },
+  "rag_creation_job" : {
+    "chunk_size" : 1000,
+    "top_k" : 5,
+    "model_name" : "gpt2"
+  }
+}
