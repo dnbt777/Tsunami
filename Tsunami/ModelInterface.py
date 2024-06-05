@@ -2,7 +2,7 @@ import base64
 import os
 import json
 import logging
-from .logger import log
+from Tsunami.logger import log
 from Tsunami.Metrics.CostTracker import CostTracker
 
 import boto3

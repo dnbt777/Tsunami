@@ -15,26 +15,22 @@ class DepthCrawlerScraper:
     @staticmethod
     def execute_job(datarequestjob: DataRequestJob, data_download_directory):
         # Extract parameters from the job
-        urls = datarequestjob.links  # List of URLs to start with
+        url = datarequestjob.links[0]  # Assuming the first link is the starting URL
         depth = datarequestjob.depth
         filter_for_retention = datarequestjob.filter_for_retention
         filter_for_avoiding_visiting_site = datarequestjob.filter_for_avoiding_visiting_site
         scraping_delay = datarequestjob.ratelimit_delay_seconds
 
-        all_scraped_urls = []
+        log(f"Starting scraping job from URL: {url} with depth: {depth}", log_type="INFO")
 
-        for url in urls:
-            log(f"Starting scraping job from URL: {url} with depth: {depth}", log_type="INFO")
-
-            # Start scraping
-            scraped_urls = DepthCrawlerScraper.scrape(url, depth, filter_for_retention,
-                                                      filter_for_avoiding_visiting_site=filter_for_avoiding_visiting_site,
-                                                      scraping_delay=scraping_delay)
-            log(f"Scraping complete for {url}. Total URLs scraped: {len(scraped_urls)}", log_type="INFO")
-            all_scraped_urls.extend(scraped_urls)
+        # Start scraping
+        scraped_urls = DepthCrawlerScraper.scrape(url, depth, filter_for_retention,
+                                                  filter_for_avoiding_visiting_site=filter_for_avoiding_visiting_site,
+                                                  scraping_delay=scraping_delay)
+        log(f"Scraping complete. Total URLs scraped: {len(scraped_urls)}", log_type="INFO")
 
         # Save scraped page contents to files
-        for scraped_url in all_scraped_urls:
+        for scraped_url in scraped_urls:
             page_content = DepthCrawlerScraper.download_page_content(scraped_url)
             if page_content:
                 sanitized_url = quote(scraped_url, safe='')  # Sanitize URL to be used as a filename

@@ -3,6 +3,7 @@ from Tsunami.DocScraper.Scrapers.YTScraper import YTScraper
 from Tsunami.DocScraper.Scrapers.SemanticArxivScraper import SemanticArxivScraper
 from Tsunami.DocScraper.Scrapers.DepthCrawlerScraper import DepthCrawlerScraper
 from Tsunami.DocScraper.Scrapers.GitHubScraper import GitHubScraper
+from Tsunami.DocScraper.Scrapers.SimpleWebScraper import SimpleWebScraper
 
 
 from Tsunami.DocScraper.DataRequest import DataRequestJobs, DataRequestJob
@@ -41,6 +42,7 @@ class DocScraperManager():
             "webscraper": DepthCrawlerScraper,
             "webcrawler": DepthCrawlerScraper,
             "github" : GitHubScraper,
+            "simplewebscraper" : SimpleWebScraper,
         }[datarequestjob.source]
         # Set params in datarequestjob
         datarequestjob.ratelimit_delay_seconds = self.project_config.ratelimit_delay_seconds # TODO make this clean["ratelimit_delay_seconds"]
